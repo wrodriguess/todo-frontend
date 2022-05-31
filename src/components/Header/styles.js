@@ -66,4 +66,10 @@ export const RightSide = styled.div`
         margin: 0 10px;
         color: #fff;
     }
+
+    button{
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
 `

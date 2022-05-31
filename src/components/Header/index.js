@@ -1,8 +1,27 @@
+import {useState, useEffect} from 'react'
+
 import * as S from './styles'
+import api from '../../services/api'
 import logo from '../../assets/logo.png'
 import bell from '../../assets/bell.png'
 
-function Header(){
+function Header({clickNotification}){
+    const [lateCount, setLateCount] = useState()
+
+    useEffect(() => {
+        lateVerify()
+    }, [])
+
+    // Roda a função lateVerify a cada 1 minuto para verificar se novas tarefas se tornaram atrasadas
+    setInterval(lateVerify, 60000);
+
+    async function lateVerify(){
+        await api.get(`/task/filter/late/00:00:00:00:00:00`)
+          .then(response => {
+            setLateCount(response.data.length)
+        })
+    }
+
     return(
         <S.Container>
             <S.LeftSide>
@@ -16,10 +35,10 @@ function Header(){
                 <span class="dividir"/>
                 <a href="#">SINCRONIZAR CELULAR</a>
                 <span class="dividir"/>
-                <a href="#" id="notification">
+                <button type="button" id="notification" onClick={clickNotification}>
                     <img src={bell} alt="Notificações"/>
-                    <span >5</span>
-                </a>
+                    <span >{lateCount}</span>
+                </button>
             </S.RightSide>
         </S.Container>
     )

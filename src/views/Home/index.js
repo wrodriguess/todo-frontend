@@ -22,9 +22,14 @@ function Home() {
       })
   }
 
+  function notification(){
+    setFilterActived("late")
+}
+
   return (
     <S.Container>
-      <Header/>
+      {/* IMPORTANTE: Passando função como props */}
+      <Header clickNotification={notification}/>
 
       <S.FilterArea>
         <button type="button" onClick={() => setFilterActived("all")}>
@@ -45,7 +50,7 @@ function Home() {
       </S.FilterArea>
 
       <S.Title>
-        <h3>TAREFAS</h3>
+        <h3>{filterActived === "late" ? 'TAREFAS ATRASADAS' : 'TAREFAS'}</h3>
       </S.Title>
 
       <S.Content>
