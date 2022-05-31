@@ -2,9 +2,9 @@ import * as S from './styles'
 
 function Footer(){
     return(
-        <>
-            <h1>Footer</h1>
-        </>
+        <S.Container>
+            <span>ToDo - Organizando a sua vida.</span>
+        </S.Container>
     )
 }
 
