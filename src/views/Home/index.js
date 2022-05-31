@@ -1,10 +1,16 @@
+import * as S from './styles.js'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
+
 function Home() {
-    return (
-      <div>
-        
-      </div>
-    );
-  }
+  return (
+    <S.Container>
+      <Header/>
+
+      <Footer/>    
+    </S.Container>
+  );
+}
   
-  export default Home;
+export default Home;
   
