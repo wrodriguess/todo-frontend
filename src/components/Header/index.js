@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react'
+import {Link} from 'react-router-dom'
 
 import * as S from './styles'
 import api from '../../services/api'
@@ -29,11 +30,11 @@ function Header({clickNotification}){
             </S.LeftSide>
 
             <S.RightSide>
-                <a href="#">INÍCIO</a>
+                <Link to="/">INÍCIO</Link>
                 <span class="dividir"/>
-                <a href="#">NOVA TAREFA</a>
+                <Link to="/task">NOVA TAREFA</Link>
                 <span class="dividir"/>
-                <a href="#">SINCRONIZAR CELULAR</a>
+                <Link to="/">SINCRONIZAR CELULAR</Link>
                 <span class="dividir"/>
                 <button type="button" id="notification" onClick={clickNotification}>
                     <img src={bell} alt="Notificações"/>
