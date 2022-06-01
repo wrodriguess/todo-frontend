@@ -7,9 +7,21 @@ import Footer from '../../components/Footer'
 import typeIcons from '../../utils/typeIcons'
 
 function Task() {
+  const [id, setId] = useState()
   const [type, setType] = useState()
+  const [title, setTitle] = useState()
+  const [description, setDescription] = useState()
+  const [date, setDate] = useState()
+  const [hour, setHour] = useState()
+  const [macaddress, setMacaddress] = useState("00:00:00:00:00:00")
   const [done, setDone] = useState(false)
 
+  async function save(){
+                            // Parametros - req.body
+    await api.post('/task', {macaddress, type, title, description, when : `${date}T${hour}:00`})
+      .then(() => alert('Tarefa Cadastrada'))
+  }
+  
   return (
     <S.Container>
       <Header/>
@@ -27,22 +39,22 @@ function Task() {
 
         <S.Input>
           <span>Título</span>
-          <input type="text" placeholder="Título da tarefa"/>
+          <input type="text" placeholder="Título da tarefa" defaultValue={title} onChange={(e) => setTitle(e.target.value)}/>
         </S.Input>
 
         <S.TextArea>
           <span>Descrição</span>
-          <textarea rows={5} placeholder="Descrição da tarefa"/>
+          <textarea rows={5} placeholder="Descrição da tarefa" defaultValue={description} onChange={(e) => setDescription(e.target.value)}/>
         </S.TextArea>
 
         <S.Input>
           <span>Data</span>
-          <input type="date"/>
+          <input type="date" defaultValue={date} onChange={(e) => setDate(e.target.value)}/>
         </S.Input>
 
         <S.Input>
           <span>Hora</span>
-          <input type="time"/>
+          <input type="time"  defaultValue={hour} onChange={(e) => setHour(e.target.value)}/>
         </S.Input>
 
         <S.Options>
@@ -55,7 +67,7 @@ function Task() {
         </S.Options>
 
         <S.Save>
-          <button type="button">SALVAR</button>
+          <button type="button" onClick={save}>SALVAR</button>
         </S.Save>
 
       </S.Form>
