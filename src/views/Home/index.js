@@ -23,7 +23,7 @@ function Home() {
   }, [filterActived])
   	
   async function LoadTasks(){
-    await api.get(`/task/filter/${filterActived}/00:00:00:00:00:00`)
+    await api.get(`/task/filter/${filterActived}/${isConnected}`)
       .then(response => {
         setTasks(response.data)
       })

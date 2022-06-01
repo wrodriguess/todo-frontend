@@ -18,7 +18,7 @@ function Header({clickNotification}){
     setInterval(lateVerify, 60000);
 
     async function lateVerify(){
-        await api.get(`/task/filter/late/00:00:00:00:00:00`)
+        await api.get(`/task/filter/late/${isConnected}`)
           .then(response => {
             setLateCount(response.data.length)
         })

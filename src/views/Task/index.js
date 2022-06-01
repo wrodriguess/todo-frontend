@@ -18,6 +18,8 @@ function Task() {
   useEffect(() => {
     if(!isConnected){
       navigate('/qrcode')
+    }else{
+      setMacaddress(isConnected)
     }
   }, [])
 
@@ -27,7 +29,7 @@ function Task() {
   const [description, setDescription] = useState()
   const [date, setDate] = useState()
   const [hour, setHour] = useState()
-  const [macaddress, setMacaddress] = useState("00:00:00:00:00:00")
+  const [macaddress, setMacaddress] = useState()
   const [done, setDone] = useState(false)
 
   useEffect(() => {

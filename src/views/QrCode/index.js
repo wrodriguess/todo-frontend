@@ -17,6 +17,9 @@ function QrCode() {
 
     // Salvando o mac no local Storage (cookies)
     async function saveMac(){
+        if(!mac){
+            return alert('Você precisa informar o número que apareceu no celular')
+        }
                                     // @todo/macaddress será o nome da variavel em local storage e mac será o valor
         await localStorage.setItem('@todo/macaddress', mac)
         window.location.href = "http://localhost:3000";
