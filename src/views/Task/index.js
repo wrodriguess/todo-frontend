@@ -41,12 +41,20 @@ function Task() {
   }
 
   async function save(){
-                            // Parametros - req.body
-    await api.post('/task', {macaddress, type, title, description, when : `${date}T${hour}:00`})
+    if(params.id){
+      // Caso true - trata-se de um update
+      await api.put(`/task/${params.id}`, {macaddress, type, title, description, when : `${date}T${hour}:00`, done})
       .then(() => {
-                    alert('Tarefa cadastrada')
-                    navigate('/')
-                  })
+          alert('Tarefa Atualizada')
+      })
+    }else{
+      // Caso false - trata-se de um create
+      await api.post('/task', {macaddress, type, title, description, when : `${date}T${hour}:00`})
+      .then(() => {
+          alert('Tarefa cadastrada')
+      })
+    }
+    navigate('/')
   }
   
   return (
