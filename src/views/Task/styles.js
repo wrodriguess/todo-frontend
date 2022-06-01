@@ -15,12 +15,13 @@ export const Form = styled.div`
 export const TypeIcons = styled.div`
     width: 100%;
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
 
     img{
         width: 50px;
         height: 50px;
-        margin: 10px;
+        margin: 10px 0;
         cursor: pointer;
 
         &:hover{

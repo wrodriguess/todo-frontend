@@ -3,6 +3,7 @@ import {BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Home from '../views/Home'
 import Task from '../views/Task'
+import QrCode from '../views/QrCode'
 
 // Criando e exportando a função Routers
 export default function Routers(){
@@ -13,6 +14,7 @@ export default function Routers(){
                 <Route path="/" element={<Home/>}/>
                 <Route path="/task" element={<Task/>}/>
                 <Route path="/task/:id" element={<Task/>}/>
+                <Route path="/qrcode" element={<QrCode/>}/>
             </Routes>   
         </BrowserRouter>
     )

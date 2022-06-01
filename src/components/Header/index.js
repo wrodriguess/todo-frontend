@@ -34,7 +34,7 @@ function Header({clickNotification}){
                 <span className="dividir"/>
                 <Link to="/task">NOVA TAREFA</Link>
                 <span className="dividir"/>
-                <Link to="/">SINCRONIZAR CELULAR</Link>
+                <Link to="/qrcode">SINCRONIZAR CELULAR</Link>
                 <span className="dividir"/>
                 <button type="button" id="notification" onClick={clickNotification}>
                     <img src={bell} alt="Notificações"/>
