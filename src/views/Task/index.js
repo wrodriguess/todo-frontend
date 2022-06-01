@@ -54,11 +54,13 @@ function Task() {
       return alert('Data é obrigatório')
     }else if (!hour){
       return alert('Hora é obrigatório')
-    }else if(currentDate > date){
-      return alert('Escolha uma data futura')
-    }else if(date === currentDate){
-      if(currentHour > hour){
-        return alert('Escolha uma hora futura')
+    }else if(!params.id){
+      if(currentDate > date){
+        return alert('Escolha uma data futura')
+      }else if(date === currentDate){
+        if(currentHour > hour){
+          return alert('Escolha uma hora futura')
+        }
       }
     }
 
