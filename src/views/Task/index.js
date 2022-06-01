@@ -79,6 +79,17 @@ function Task() {
     }
     navigate('/')
   }
+
+  async function remove(){
+    const res = window.confirm('Deseja realmente remover a tarefa?')
+    if(res){
+      await api.delete(`/task/${params.id}`)
+      .then(() => {
+        alert('Tarefa Removida')
+      })
+      navigate('/')
+    }
+  }
   
   return (
     <S.Container>
@@ -121,7 +132,10 @@ function Task() {
             <label htmlFor="done">CONCLUÍDO</label>
           </div>
           
-          <button type="button">EXCLUIR</button>
+          {/* Exibe o botão excluir somente em UPDATE */}
+          {params.id &&
+            <button type="button" onClick={remove}>EXCLUIR</button>  
+          }
         </S.Options>
 
         <S.Save>
