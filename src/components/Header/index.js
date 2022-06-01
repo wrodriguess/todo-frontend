@@ -35,11 +35,15 @@ function Header({clickNotification}){
                 <Link to="/task">NOVA TAREFA</Link>
                 <span className="dividir"/>
                 <Link to="/qrcode">SINCRONIZAR CELULAR</Link>
-                <span className="dividir"/>
-                <button type="button" id="notification" onClick={clickNotification}>
-                    <img src={bell} alt="Notificações"/>
-                    <span >{lateCount}</span>
-                </button>
+                {lateCount > 0 && 
+                    <>
+                        <span className="dividir"/>
+                        <button type="button" id="notification" onClick={clickNotification}>
+                            <img src={bell} alt="Notificações"/>
+                            <span >{lateCount}</span>
+                        </button>
+                    </>
+                }
             </S.RightSide>
         </S.Container>
     )
