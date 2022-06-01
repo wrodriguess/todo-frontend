@@ -11,6 +11,8 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     margin: 20px;
+    // Recuperando props no css
+    opacity: ${props => props.done ? 0.5 : 1};
 
     &:hover{
         opacity: 0.5;

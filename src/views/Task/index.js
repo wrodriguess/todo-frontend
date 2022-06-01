@@ -10,7 +10,9 @@ import typeIcons from '../../utils/typeIcons'
 
 function Task() {
   const navigate = useNavigate()
-  const params = useParams();
+  const params = useParams()
+  const currentDate = format(new Date(), 'yyyy-MM-dd')
+  const currentHour = format(new Date(), 'HH:mm')
 
   const [id, setId] = useState()
   const [type, setType] = useState()
@@ -41,6 +43,25 @@ function Task() {
   }
 
   async function save(){
+    // Validação dos campos obrigatórios
+    if(!type){
+      return alert('Tipo é obrigatório')
+    }else if (!title){
+      return alert('Titulo é obrigatório')
+    }else if (!description){
+      return alert('Descrição é obrigatório')
+    }else if (!date){
+      return alert('Data é obrigatório')
+    }else if (!hour){
+      return alert('Hora é obrigatório')
+    }else if(currentDate > date){
+      return alert('Escolha uma data futura')
+    }else if(date === currentDate){
+      if(currentHour > hour){
+        return alert('Escolha uma hora futura')
+      }
+    }
+
     if(params.id){
       // Caso true - trata-se de um update
       await api.put(`/task/${params.id}`, {macaddress, type, title, description, when : `${date}T${hour}:00`, done})

@@ -31,11 +31,11 @@ function Header({clickNotification}){
 
             <S.RightSide>
                 <Link to="/">INÍCIO</Link>
-                <span class="dividir"/>
+                <span className="dividir"/>
                 <Link to="/task">NOVA TAREFA</Link>
-                <span class="dividir"/>
+                <span className="dividir"/>
                 <Link to="/">SINCRONIZAR CELULAR</Link>
-                <span class="dividir"/>
+                <span className="dividir"/>
                 <button type="button" id="notification" onClick={clickNotification}>
                     <img src={bell} alt="Notificações"/>
                     <span >{lateCount}</span>
