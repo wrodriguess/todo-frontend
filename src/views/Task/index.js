@@ -4,6 +4,7 @@ import {format} from 'date-fns'
 
 import * as S from './styles.js'
 import api from '../../services/api'
+import isConnected from '../../utils/isConnected'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import typeIcons from '../../utils/typeIcons'
@@ -13,6 +14,12 @@ function Task() {
   const params = useParams()
   const currentDate = format(new Date(), 'yyyy-MM-dd')
   const currentHour = format(new Date(), 'HH:mm')
+
+  useEffect(() => {
+    if(!isConnected){
+      navigate('/qrcode')
+    }
+  }, [])
 
   const [id, setId] = useState()
   const [type, setType] = useState()

@@ -71,5 +71,13 @@ export const RightSide = styled.div`
         background: none;
         border: none;
         cursor: pointer;
+        color: #fff;
+        font-weight: bold;
+        font-size: 16px;
+
+        &:hover{
+            color: #EE6B26;
+            transition: all 0.3s ease;
+        }
     }
 `

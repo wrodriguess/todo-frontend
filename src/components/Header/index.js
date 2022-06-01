@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 
 import * as S from './styles'
 import api from '../../services/api'
+import isConnected from '../../utils/isConnected'
 import logo from '../../assets/logo.png'
 import bell from '../../assets/bell.png'
 
@@ -23,6 +24,12 @@ function Header({clickNotification}){
         })
     }
 
+    // Limpando o Cookie (Local Storage)
+    async function logout(){
+        await localStorage.removeItem('@todo/macaddress')
+        window.location.reload()
+    }
+
     return(
         <S.Container>
             <S.LeftSide>
@@ -34,7 +41,10 @@ function Header({clickNotification}){
                 <span className="dividir"/>
                 <Link to="/task">NOVA TAREFA</Link>
                 <span className="dividir"/>
-                <Link to="/qrcode">SINCRONIZAR CELULAR</Link>
+                
+                {!isConnected && <Link to="/qrcode">SINCRONIZAR CELULAR</Link>  }
+                {isConnected && <button type="button" onClick={logout}>SAIR</button>  }
+                
                 {lateCount > 0 && 
                     <>
                         <span className="dividir"/>

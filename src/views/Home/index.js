@@ -1,18 +1,24 @@
 import {useState, useEffect} from 'react'
+import {useNavigate} from 'react-router-dom'
 import {Link} from 'react-router-dom'
 
 import * as S from './styles.js'
 import api from '../../services/api'
+import isConnected from '../../utils/isConnected'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import FilterCard from '../../components/FilterCard'
 import TaskCard from '../../components/TaskCard'
 
 function Home() {
+  const navigate = useNavigate()
   const [filterActived, setFilterActived] = useState("today")
   const [tasks, setTasks] = useState([])
 
   useEffect(() => {
+    if(!isConnected){
+      navigate('/qrcode')
+    }
     LoadTasks()
   }, [filterActived])
   	
