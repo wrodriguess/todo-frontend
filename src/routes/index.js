@@ -12,6 +12,7 @@ export default function Routers(){
                 {/* Criando as rotas e os componentes que correspondem */}
                 <Route path="/" element={<Home/>}/>
                 <Route path="/task" element={<Task/>}/>
+                <Route path="/task/:id" element={<Task/>}/>
             </Routes>   
         </BrowserRouter>
     )

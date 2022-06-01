@@ -1,4 +1,6 @@
 import {useState, useEffect} from 'react'
+import {useNavigate, useParams} from 'react-router-dom'
+import {format} from 'date-fns'
 
 import * as S from './styles.js'
 import api from '../../services/api'
@@ -7,6 +9,9 @@ import Footer from '../../components/Footer'
 import typeIcons from '../../utils/typeIcons'
 
 function Task() {
+  const navigate = useNavigate()
+  const params = useParams();
+
   const [id, setId] = useState()
   const [type, setType] = useState()
   const [title, setTitle] = useState()
@@ -16,10 +21,32 @@ function Task() {
   const [macaddress, setMacaddress] = useState("00:00:00:00:00:00")
   const [done, setDone] = useState(false)
 
+  useEffect(() => {
+    loadTaskDetails()
+  }, [])
+
+  // Carregando dados da tarefa caso um id seja passado na url
+  async function loadTaskDetails(){
+    await api.get(`/task/${macaddress}/${params.id}`)
+      .then(response => {
+        console.log(response)
+        setId(response.data._id)
+        setType(response.data.type)
+        setTitle(response.data.title)
+        setDescription(response.data.description)
+        setDate(format(new Date(response.data.when), 'yyyy-MM-dd'))
+        setHour(format(new Date(response.data.when), 'HH:mm' ))
+        setDone(response.data.done)
+      })
+  }
+
   async function save(){
                             // Parametros - req.body
     await api.post('/task', {macaddress, type, title, description, when : `${date}T${hour}:00`})
-      .then(() => alert('Tarefa Cadastrada'))
+      .then(() => {
+                    alert('Tarefa cadastrada')
+                    navigate('/')
+                  })
   }
   
   return (
